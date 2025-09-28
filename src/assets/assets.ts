@@ -10,7 +10,7 @@ import docker from "@/assets/docker.png";
 import firebase from "@/assets/firebase.png";
 import graphQl from "@/assets/graphQl.png";
 import jest from "@/assets/jest.png";
-import mongoose from "@/assets/mongoose.png";
+// import mongoose from "@/assets/mongoose.png";
 import next from "@/assets/next.png";
 import node from "@/assets/node.png";
 import oauth from "@/assets/oauth.svg";
@@ -78,7 +78,7 @@ const services = [
 const skills = {
   frontend: [tailwind, react, typescript, next, redux],
   backend: [restApi, node, express, graphQl, oauth, jest, docker],
-  database: [mongodb, mongoose, postgreSQL, mySql, firebase],
+  database: [mongodb, postgreSQL, mySql, firebase],
 };
 
 const myWorks = [
