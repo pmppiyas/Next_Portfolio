@@ -1,43 +1,41 @@
-import bannerImage from "@/app/Assets/banner.jpg";
-import backend from "@/app/Assets/development.png";
-import eCommerce from "@/app/Assets/e-commerce.png";
-import maintainance from "@/app/Assets/maintainance.png";
-import management from "@/app/Assets/management.png";
-import webdev from "@/app/Assets/programming.png";
-import deploy from "@/app/Assets/startup.png";
+import bannerImage from "@/assets/banner.jpg";
+import backend from "@/assets/development.png";
+import eCommerce from "@/assets/e-commerce.png";
+import maintainance from "@/assets/maintainance.png";
+import management from "@/assets/management.png";
+import webdev from "@/assets/programming.png";
+import deploy from "@/assets/startup.png";
 
-import html from "@/app/Assets/html-5.png";
+import docker from "@/assets/docker.png";
+import firebase from "@/assets/firebase.png";
+import graphQl from "@/assets/graphQl.png";
+import jest from "@/assets/jest.png";
+import mongoose from "@/assets/mongoose.png";
+import next from "@/assets/next.png";
+import node from "@/assets/node.png";
+import oauth from "@/assets/oauth.svg";
+import react from "@/assets/react.png";
+import redux from "@/assets/redux.png";
+import mySql from "@/assets/sql.png";
+import tailwind from "@/assets/tailwind.png";
+import typescript from "@/assets/typescript.png";
 
-import docker from "@/app/Assets/docker.png";
-import firebase from "@/app/Assets/firebase.png";
-import graphQl from "@/app/Assets/graphQl.png";
-import jest from "@/app/Assets/jest.png";
-import js from "@/app/Assets/js.png";
-import mongoose from "@/app/Assets/Mongoose.png";
-import next from "@/app/Assets/next.png";
-import node from "@/app/Assets/node.png";
-import react from "@/app/Assets/react.png";
-import redux from "@/app/Assets/redux.png";
-import mySql from "@/app/Assets/sql.png";
-import tailwind from "@/app/Assets/tailwind.png";
-import typescript from "@/app/Assets/typescript.png";
+import express from "@/assets/express.png";
+import mongodb from "@/assets/mongodb.png";
+import postgreSQL from "@/assets/postgreSQL.png";
+import restApi from "@/assets/restApi.png";
 
-import express from "@/app/Assets/express.png";
-import mongodb from "@/app/Assets/mongodb.png";
-import postgreSQL from "@/app/Assets/postgreSQL.png";
-import restApi from "@/app/Assets/restApi.png";
-
-import website1 from "@/app/Assets/website1.png";
+import website1 from "@/assets/website1.png";
 // People
-import man1 from "@/app/Assets/man1.jpg";
-import man2 from "@/app/Assets/man2.jpg";
-import man3 from "@/app/Assets/man3.png";
-import man4 from "@/app/Assets/man4.png";
-import man5 from "@/app/Assets/man5.png";
+import man1 from "@/assets/man1.jpg";
+import man2 from "@/assets/man2.jpg";
+import man3 from "@/assets/man3.png";
+import man4 from "@/assets/man4.png";
+import man5 from "@/assets/man5.png";
 
 // Lottie Image
 // Resume
-// import resume from "@/app/Assets/resume.pdf";
+// import resume from "@/assets/resume.pdf";
 const services = [
   {
     name: "Web Development",
@@ -78,9 +76,9 @@ const services = [
 ];
 
 const skills = {
-  frontend: [html, tailwind, js, react, typescript, next, redux],
-  backend: [node, express, graphQl, jest, restApi, docker],
-  database: [mongodb, postgreSQL, mySql, firebase],
+  frontend: [tailwind, react, typescript, next, redux],
+  backend: [restApi, node, express, graphQl, oauth, jest, docker],
+  database: [mongodb, mongoose, postgreSQL, mySql, firebase],
 };
 
 const myWorks = [

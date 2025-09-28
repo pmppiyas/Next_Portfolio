@@ -12,7 +12,6 @@ function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const lastScrollY = window.scrollY;
     let ticking = false;
 
     const handleScroll = () => {
@@ -35,22 +34,34 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu when clicking outside
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (
-        navbarRef.current &&
-        !navbarRef.current.contains(event.target) &&
-        isMenuOpen
-      ) {
-        setIsMenuOpen(false);
+    let ticking = false;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+
+      if (scrollPercent > 0.3) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
       }
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, [isMenuOpen]);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -81,13 +92,10 @@ function Navbar() {
   ];
 
   return (
-    <header
-      ref={navbarRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all  max-w-6xl mx-auto duration-300  ${scrolled ? "bg-bg-custom shadow-lg py-4 " : "bg-transparent py-4  "
-        }`}
+    <header ref={navbarRef} className={`fixed top-0 left-0 right-0 z-50 transition-all mx-auto duration-300 ${scrolled ? "bg-custom shadow-lg py-4" : "bg-transparent py-4"}`}
     >
-      <div className="container mx-auto  w-full overflow-hidden">
-        <div className="flex justify-between items-center px-4  lg:px-6">
+      <div className="container mx-auto w-full overflow-hidden">
+        <div className="flex justify-between items-center px-4 lg:px-6">
           {/* Logo */}
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
             <Link href="/" className="flex items-center">
@@ -99,28 +107,23 @@ function Navbar() {
           </h2>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8 ">
+          <div className="hidden lg:flex items-center gap-8">
             <nav className="flex gap-1">
               {links.map((link, idx) => (
                 <div key={idx} className="relative group text-accent hover:text-mine">
                   <Link
                     href={link.link}
-                    className={`text-base font-medium px-4 py-2 rounded-md flex items-center gap-1 transition-all "
-                      }`}
-
+                    className="text-base font-medium px-4 py-2 rounded-md flex items-center gap-1 transition-all"
                   >
                     {link.name}
-
                   </Link>
-
-
                 </div>
               ))}
             </nav>
 
             {/* Phone contact - desktop */}
             <div className="flex items-center gap-4 cursor-pointer">
-              <div className="flex items-center gap-2  text-white ring-2 ring-primary px-4 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-yellow-300/20">
+              <div className="flex items-center gap-2 text-white ring-2 ring-primary px-4 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-yellow-300/20">
                 <a
                   href=""
                   download="PrinceMahmudPiyas_CV"
@@ -138,7 +141,7 @@ function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center gap-4 ">
+          <div className="lg:hidden flex items-center gap-4">
             {/* Small phone icon for mobile */}
             <a
               href="tel:+880177233703"
@@ -148,7 +151,7 @@ function Navbar() {
             </a>
 
             <Button
-              className="p-2 rounded-full hover:bg-primary/50  transition-colors focus:outline-none"
+              className="p-2 rounded-full hover:bg-primary/50 transition-colors focus:outline-none"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-expanded={isMenuOpen}
               aria-label="Toggle menu"
@@ -185,7 +188,7 @@ function Navbar() {
           </h2>
         </div>
 
-        <div className="px-4 pb-6 ">
+        <div className="px-4 pb-6">
           <nav className="flex flex-col gap-4 justify-between">
             {links.map((link, idx) => (
               <div key={idx} className="border-b border-accent">
@@ -201,7 +204,6 @@ function Navbar() {
               Make a call
             </a>
           </Button>
-
         </div>
       </div>
 
@@ -216,40 +218,6 @@ function Navbar() {
   );
 }
 
-// Mobile submenu component with toggle functionality
-function MobileSubmenu({ link }) {
-  const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <div>
-      <button
-        className="w-full flex items-center justify-between py-4 px-3 text-lg text-gray-800"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {link.name}
-        <ChevronDown
-          size={18}
-          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-            }`}
-        />
-      </button>
-
-      <div
-        className={`overflow-hidden transition-all duration-300 bg-gray-50 rounded-md ${isOpen ? "max-h-64 py-2 mb-2" : "max-h-0"
-          }`}
-      >
-        {link.subMenu?.map((subItem, subIdx) => (
-          <Link
-            key={subIdx}
-            href={subItem.link}
-            className="block pl-6 pr-3 py-3 text-gray-700 hover:text-mine border-l-2 border-transparent hover:border-mine ml-3 transition-all"
-          >
-            {subItem.name}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default Navbar;

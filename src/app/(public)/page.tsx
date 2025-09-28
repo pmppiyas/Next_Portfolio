@@ -1,5 +1,6 @@
 import AboutPage from '@/components/module/about/AboutPage';
 import Hero from '@/components/module/home/Hero';
+import SkillsPage from '@/components/module/skills/SkillsPage';
 
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div>
       <Hero />
       <AboutPage />
+      <SkillsPage />
     </div>
   );
 }
